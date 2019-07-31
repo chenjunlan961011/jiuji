@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="九机网.css">
+    <script src="data.js"></script>
+</head>
+
+<body>
+    <script>
+        window.onload = () => {
+            /* 构建class */
+            class JiujiManager {
+                constructor(data, datatypes) {
+                    this.dataoption = data.dataoption;
+                    // this.index = 0;
+                    this.datatypes = datatypes;
+                    this.typelist = null;
+                    this.length = 0;
+                    this.root = null;
+                    this.datadetail = data.datadetail;
+                    this.selectedIndex = 0;
+                    this.ulOption = null;
+                    this.divDetail = null;
+                    this.oImg = null;
+                }
+                craateHtml() {
+                    let oBox = document.createElement("div");
+                    oBox.className = "box";
+                    this.root = oBox;
+                    oBox.appendChild(this.createOptionHtml());
+                    oBox.appendChild(this.createDetailHtml());
+                    console.log(oBox);
+                    document.body.appendChild(oBox);
+                }
+                createOptionHtml() {
+                    let ulOption = document.createElement("ul");
+                    ulOption.className = "option";
+                    this.ulOption = ulOption;
+                    let res = this.dataoption.map((element, index) => {
+                        this.typelist = element.typelist;
+                        this.length = this.datatypes[index].length;
+                        let arr = [];
+                        for (var i = 0; i < this.datatypes[index].length; i++) {
+                            let typehtml = `<a href="">${this.typelist[i]}</a>`;
+                            arr.push(typehtml);
+                        }
+                        let typeliststr = arr.join("");
+                        let html =
+                            `
+                         <li>
+                          <p class="op-head">
+                              <span class="icon"></span>
+                              <span class="title">
+                                  <a href="">${element.title}</a>
+                              </span>
+                          </p>
+                          <div class="op-body">
+                              <div class="l-blank"></div>
+                              <ul class="types">${typeliststr}</ul>
+                              <div class="r-blank"></div>
+                          </div>
+                         </li>
+                         `;
+                        return html;
+                    }).join("");
+                    ulOption.innerHTML = res;
+                    return ulOption;
+                }
+                createDetailHtml() {
+                    let divDetail = document.createElement("div");
+                    divDetail.className = "detail";
+                    this.divDetail = divDetail;
+                    let res = this.datadetail.map((element, index) => {
+                        let textliist = "";
+                        element[0].forEach((ele) => {
+                            let blacklist='';
+                             ele.blacktext.forEach((item)=>{
+                                blacklist+= `<a href="">${item}</a>`
+                            });
+                           
+                            let redhtml = `<div class="red-section"><span>${ele.redtext}</span></div>`;
+                            let blackhtml = `<div class="black-section">${blacklist}</div>`
+                            textliist += `<div class="text-list">${redhtml}${blackhtml}</div>`;
+                        })
+
+                    let html = `
+                    <div class="li-detail">
+                        <div class="text">${textliist}</div>
+                        <div class="pics">
+                            <img class="pic1 pic" src=${element[1].pic1} alt="">
+                            <img class="pic2 pic" src=${element[1].pic2} alt="">
+                       </div>
+                    </div>`
+                    return html;
+                    }).join("");
+                    divDetail.innerHTML = res;
+                    return divDetail;
+                }
+            
+                switchstyleClass(elements, index, defaultClass, selectedClass){
+                    Array.from(elements).forEach((ele) => {
+                      ele.className = defaultClass;
+                    }) 
+                  elements[index].className = selectedClass;
+                }
+                addMouseenterwithOption(){
+                   let oLiops = this.ulOption.children;
+                   let Lisarr = Array.from(oLiops);
+                   let odivdts = this.divDetail.children;
+                   let Divsarr = Array.from(odivdts);
+                   for(let i = 0; i < Lisarr.length; i++){
+                    Lisarr[i].onmouseenter = () =>{
+                        this.selectedIndex = i;
+                        this.switchstyleClass(oLiops,i,"","active");
+                        this.switchstyleClass(odivdts,i,"li-detail","li-detail active");
+                        // this.addMouseenterEvent();
+                    }  
+                }    
+                }
+
+                init() {
+                    this.craateHtml();
+                    this.addMouseenterwithOption();
+                }
+            }
+            let j1 = new JiujiManager(Data, datatypes);
+            j1.init();
+        }
+    </script>
+</body>
+
+</html>

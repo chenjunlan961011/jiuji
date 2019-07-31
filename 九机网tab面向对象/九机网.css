@@ -1,0 +1,150 @@
+*{
+    margin: 0;padding: 0;list-style: none;
+}
+a{
+    text-decoration: none;
+}
+.box{
+    width: 1200px;
+    height: 480px;
+    /* background: pink; */
+    margin: 50px auto;
+}
+/* -----------------------左边的块 ----------------------*/
+.option{
+    display: inline-block;
+    height:100%;
+    width:200px;
+    background: rgb(126, 119, 119);
+    float: left;
+}
+.option>li{
+    width:100%;
+    height:80px;
+}
+.option> .active{
+    background: #000;
+}
+.option>li .op-head{
+    width:100%;
+    height: 24px;
+    /* background: rgb(62, 184, 62); */
+}
+.option>li .op-head .icon{
+    display: inline-block;
+    height: 100%;
+    width:23px;
+    background-image:url(img/icon.png);
+    background-position: -32px -11px;
+    float:left;
+}
+.option>li .op-head .title{
+    display: inline-block;
+    height: 100%;
+    width:calc(100% - 23px);
+    float:right;
+}
+.option>li .op-head .title a{
+    color:#fff;
+    font-size: 16px;
+    height:28px;
+    line-height: 28px;
+    margin-left: 5px;
+}
+.option>li .op-body{
+    width:100%;
+    height: calc(100% - 24px);
+}
+.option>li .op-body .l-blank{
+    height:100%;
+    width:23px;
+    float: left;
+}
+.option>li .op-body .types{
+    height: 100%;
+    width: 152px;
+    float: left;
+}
+.option>li .op-body .r-blank{
+    height:100%;
+    width:calc(100% - 175px);
+    float: right;
+    /* background: rgb(155, 231, 33); */
+}
+.option>li .op-body .types a{
+    color: rgb(228, 222, 222);
+    font-size: 12px;
+    margin-right: 3px;
+}
+
+/*------------------------ 右边的块------------------------ */
+.detail{
+    height: 100%;
+    width:calc(100% - 200px);
+    /* background: rgb(51, 15, 211); */
+    float: right;
+}
+.detail>img{
+   width: 100%;
+   height: 100%;
+}
+.detail .li-detail{
+    display: none;
+    height:480px;
+    width:100%;
+    /* background: pink; */
+}
+.detail .active{
+   display: block;
+}
+.detail .li-detail .text{
+    height: 100%;
+    width: 700px;
+    /* background: rgb(21, 170, 29); */
+    float: left;
+}
+.detail .li-detail .text .text-list{
+    width: 100%;
+    /* height: 74px; */
+    border: 0.2px solid  rgb(242, 243, 241);
+}
+.detail .li-detail .text .text-list .red-section{
+   width: 80px;
+   height: 100%; 
+   /* background: #000; */
+   float: left;
+}
+.detail .li-detail .text .text-list .red-section span{
+    color:red;
+    font-weight: bolder;
+    margin-top:10px;
+    margin-left:8px;
+    font-size:14px;
+    display: inline-block;
+}
+.detail .li-detail .text .text-list .black-section{
+    width:calc(100% - 80px);
+    height: 100%;
+    float: right; 
+}
+.detail .li-detail .text .text-list .black-section a{
+    display: inline-block;
+    height: 20px;
+    width: 90px;
+    border-right:1px solid rgb(80, 75, 75);
+    color: rgb(19, 12, 12);
+    margin-top:10px;
+    text-align: center;
+    /* margin-right:10px; */
+    font-size:10px;
+}
+.detail .li-detail .pics{
+    height: 100%;
+    width:calc(100% - 700px);
+    /* background: orange; */
+    float: right;
+}
+.detail .li-detail .pics .pic{
+    width:100%;
+    height: 50%;
+}
